@@ -1,7 +1,6 @@
 import idx from 'idx.macro';
-import mynameof from "../mynameof.macro";
 import nameof from "ts-nameof.macro";
-
+import mynameof from "../mynameof.macro";
 
 const user = {
     user: {
@@ -14,6 +13,10 @@ const user = {
 }
 idx(user, _ => _.user.fullName);
 
+console.log("should output alert:", nameof(window.alert))
+
 const n = mynameof(user.user.fullName);
 console.log('should output fullName:', n); //outputs "fullName"
-console.log("should output alert:", nameof(window.alert))
+
+const y = yournameof(user.user.fullName);
+console.log('should also output fullName:', y);

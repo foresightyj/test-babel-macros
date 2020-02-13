@@ -1,0 +1,1 @@
+declare function yournameof(any): string;

@@ -1,4 +1,4 @@
-{
+module.exports = {
   "presets": [
     [
       "@babel/env",
@@ -20,6 +20,7 @@
     ],
     [
       "babel-plugin-macros"
-    ]
+    ],
+    require("./yournameof")
   ]
 }

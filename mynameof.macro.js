@@ -1,6 +1,10 @@
 //@ts-check
+const assert = require('assert');
 const { createMacro } = require('babel-plugin-macros')
 const util = require('util');
+const transform = require("./nameof");
+
+const t = require('@babel/types');
 
 //see https://github.com/kentcdodds/babel-plugin-macros/blob/master/other/docs/author.md
 
@@ -37,24 +41,13 @@ const mynameof = createMacro(({ references, state, babel }) => {
     // normal babel plugin. `babel` is the `babel-plugin-macros` module.
     // do whatever you like to the AST paths you find in `references`
     // read more below...
-    // console.log(state);
-    // console.log(babel);
-
-    let b;
-    b = babel;
     references.default.forEach(referencePath => {
         const parentPath = referencePath.parentPath;
         // console.log(util.inspect(parentPath, false, 1, true));
         /** @type {CallExpression} */
         // @ts-ignore
-        const ce = parentPath.node;
-        /** @type {MemberExpression} */
-        // @ts-ignore
-        const me = ce.arguments[0];
-        /** @type {string} */
-        const name = me.property.name;
-        const node = toNode(name, babel);
-        parentPath.replaceWith(node);
+        assert(t.isCallExpression(parentPath.node));
+        transform(parentPath);
     })
 }, {
     configName: 'mynameof'
