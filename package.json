@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "babel ./src --out-dir ./lib --extensions \".js,.ts\""
+    "build": "babel ./src --out-dir ./lib --extensions \".js,.ts\"",
+    "start": "babel ./src -w --out-dir ./lib --extensions \".js,.ts\""
   },
   "keywords": [],
   "author": "",
